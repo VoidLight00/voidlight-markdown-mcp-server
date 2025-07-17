@@ -1,0 +1,244 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "voidlight-markdown-mcp-server"
+description = "Enhanced MarkItDown MCP Server with Korean support"
+version = "1.0.0"
+authors = [
+    {name = "Voidlight", email = "voidlight@example.com"},
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+keywords = ["mcp", "markdown", "document", "converter", "korean"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Markup",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "beautifulsoup4>=4.12.0",
+    "requests>=2.31.0",
+    "markdownify>=0.11.6",
+    "magika>=0.6.1",
+    "charset-normalizer>=3.2.0",
+    "defusedxml>=0.7.1",
+    "pydantic>=2.0.0",
+    "typing-extensions>=4.8.0",
+    "python-magic>=0.4.27",
+    "Pillow>=10.0.0",
+    "psutil>=5.9.0",
+    "tqdm>=4.66.0",
+    "cachetools>=5.3.0",
+]
+
+[project.optional-dependencies]
+all = [
+    "python-pptx>=0.6.21",
+    "mammoth>=1.6.0",
+    "lxml>=4.9.3",
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "xlrd>=2.0.0",
+    "pdfminer.six>=20221105",
+    "olefile>=0.46",
+    "striprtf>=0.0.21",
+    "exifread>=3.0.0",
+    "pydub>=0.25.1",
+    "SpeechRecognition>=3.10.0",
+    "mutagen>=1.47.0",
+    "youtube-transcript-api>=0.6.0",
+    "feedparser>=6.0.10",
+    "azure-ai-documentintelligence>=1.0.0",
+    "azure-identity>=1.15.0",
+    "google-cloud-vision>=3.4.0",
+    "openai>=1.0.0",
+    "hanspell>=1.1.0",
+    "easyocr>=1.7.0",
+    "pyhwp>=0.1.0",
+]
+
+korean = [
+    "hanspell>=1.1.0",
+    "easyocr>=1.7.0",
+    "pyhwp>=0.1.0",
+]
+
+cloud = [
+    "azure-ai-documentintelligence>=1.0.0",
+    "azure-identity>=1.15.0",
+    "google-cloud-vision>=3.4.0",
+    "openai>=1.0.0",
+]
+
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.11.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "pylint>=2.17.0",
+    "mypy>=1.5.0",
+    "flake8>=6.0.0",
+    "pre-commit>=3.4.0",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/voidlight/voidlight-markdown-mcp-server"
+Documentation = "https://github.com/voidlight/voidlight-markdown-mcp-server/blob/main/README.md"
+Repository = "https://github.com/voidlight/voidlight-markdown-mcp-server"
+Issues = "https://github.com/voidlight/voidlight-markdown-mcp-server/issues"
+
+[project.scripts]
+voidlight-markdown-mcp = "markitdown_mcp_enhanced.server:main"
+
+[project.entry-points."markitdown.plugin"]
+rtf = "markitdown_mcp_enhanced.plugins.sample_plugin:RtfConverter"
+advanced_text = "markitdown_mcp_enhanced.plugins.advanced_plugin:AdvancedTextConverter"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/markitdown_mcp_enhanced"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/docs",
+    "/tests",
+    "/.env*",
+    "/.vscode",
+    "/.idea",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["markitdown_mcp_enhanced"]
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-docstring",
+    "invalid-name",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-locals",
+    "too-many-branches",
+    "too-many-statements",
+    "duplicate-code",
+]
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "magic.*",
+    "pyhwp.*",
+    "striprtf.*",
+    "hanspell.*",
+    "easyocr.*",
+    "mutagen.*",
+    "youtube_transcript_api.*",
+    "feedparser.*",
+    "exifread.*",
+    "pydub.*",
+    "speech_recognition.*",
+    "mammoth.*",
+    "markdownify.*",
+    "olefile.*",
+    "pdfminer.*",
+    "azure.*",
+    "google.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--cov=src/markitdown_mcp_enhanced",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/migrations/*",
+    "*/venv/*",
+    "*/env/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\):",
+    "@(abc\.)?abstractmethod",
+]
