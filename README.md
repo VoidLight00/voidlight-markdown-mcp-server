@@ -6,11 +6,17 @@ Microsoft MarkItDown을 벤치마킹하여 제작한 **업그레이드된 MCP �
 
 ### npx로 간편 설치
 ```bash
+# macOS/Linux
+npx markitdown-mcp-enhanced
+
+# Windows (명령 프롬프트)
+npx markitdown-mcp-enhanced
+
+# Windows (PowerShell)
 npx markitdown-mcp-enhanced
 ```
 
 ### Claude Desktop 설정
-Claude Desktop 설정 파일에 추가:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -31,6 +37,10 @@ Claude Desktop 설정 파일에 추가:
 ```
 
 Claude Desktop을 재시작하면 바로 사용 가능합니다! 🎉
+
+### 📋 상세 설치 가이드
+- **Windows 사용자**: [WINDOWS_SETUP.md](WINDOWS_SETUP.md) 참조
+- **일반 사용자**: [CLAUDE_DESKTOP_SETUP.md](CLAUDE_DESKTOP_SETUP.md) 참조
 
 ## 🎯 주요 특징
 

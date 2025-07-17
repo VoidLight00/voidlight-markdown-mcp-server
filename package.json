@@ -40,6 +40,8 @@
     "requirements.txt",
     "setup.py",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "WINDOWS_SETUP.md",
+    "CLAUDE_DESKTOP_SETUP.md"
   ]
 }
