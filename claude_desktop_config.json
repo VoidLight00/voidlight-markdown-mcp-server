@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "markitdown-mcp-enhanced": {
+      "command": "npx",
+      "args": ["markitdown-mcp-enhanced"],
+      "env": {
+        "KOREAN_SUPPORT": "true",
+        "LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}

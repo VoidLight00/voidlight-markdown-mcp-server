@@ -475,6 +475,7 @@ async def main():
     """Main entry point"""
     import argparse
     import os
+    import sys
     
     parser = argparse.ArgumentParser(description="MarkItDown MCP Enhanced Server")
     parser.add_argument("--log-level", default="INFO", help="Log level")
@@ -485,18 +486,25 @@ async def main():
     
     args = parser.parse_args()
     
-    # Configure logging
+    # Configure logging to stderr to avoid interfering with MCP protocol
     logging.basicConfig(
         level=getattr(logging, args.log_level.upper()),
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        stream=sys.stderr
     )
+    
+    # Get configuration from environment variables
+    openai_api_key = args.openai_api_key or os.getenv("OPENAI_API_KEY")
+    azure_endpoint = args.azure_endpoint or os.getenv("AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT")
+    azure_key = args.azure_key or os.getenv("AZURE_DOCUMENT_INTELLIGENCE_KEY")
+    korean_support = args.korean_support or os.getenv("KOREAN_SUPPORT", "true").lower() == "true"
     
     # Create server
     server = create_server(
-        enable_korean_support=args.korean_support,
-        docintel_endpoint=args.azure_endpoint,
-        docintel_key=args.azure_key,
-        openai_api_key=args.openai_api_key
+        enable_korean_support=korean_support,
+        docintel_endpoint=azure_endpoint,
+        docintel_key=azure_key,
+        openai_api_key=openai_api_key
     )
     
     # Run server

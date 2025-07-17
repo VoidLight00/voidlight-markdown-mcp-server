@@ -2,6 +2,36 @@
 
 Microsoft MarkItDown을 벤치마킹하여 제작한 **업그레이드된 MCP 서버**입니다. 한국어 지원을 강화하고 더 많은 파일 형식을 지원합니다.
 
+## 🚀 빠른 시작 (Claude Desktop)
+
+### npx로 간편 설치
+```bash
+npx markitdown-mcp-enhanced
+```
+
+### Claude Desktop 설정
+Claude Desktop 설정 파일에 추가:
+
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "markitdown-mcp-enhanced": {
+      "command": "npx",
+      "args": ["markitdown-mcp-enhanced"],
+      "env": {
+        "KOREAN_SUPPORT": "true",
+        "LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
+```
+
+Claude Desktop을 재시작하면 바로 사용 가능합니다! 🎉
+
 ## 🎯 주요 특징
 
 ### 1차 목표: 완전한 기능 복제

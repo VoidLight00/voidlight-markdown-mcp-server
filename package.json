@@ -1,0 +1,45 @@
+{
+  "name": "markitdown-mcp-enhanced",
+  "version": "1.0.0",
+  "description": "Enhanced MarkItDown MCP Server with Korean support",
+  "main": "index.js",
+  "bin": {
+    "markitdown-mcp-enhanced": "./bin/markitdown-mcp-enhanced.js"
+  },
+  "scripts": {
+    "start": "node bin/markitdown-mcp-enhanced.js",
+    "install": "python -m pip install -e .",
+    "postinstall": "python -m pip install -e ."
+  },
+  "keywords": [
+    "mcp",
+    "markitdown",
+    "document-conversion",
+    "korean",
+    "pdf",
+    "docx",
+    "markdown"
+  ],
+  "author": "Voidlight",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VoidLight00/voidlight-markdown-mcp-server.git"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.8.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "python3": ">=3.8.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "requirements.txt",
+    "setup.py",
+    "README.md",
+    "LICENSE"
+  ]
+}
