@@ -1,0 +1,22 @@
+# 기본 의존성만 (Python 3.8+ 호환)
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+markdownify>=0.11.6
+charset-normalizer>=3.2.0
+defusedxml>=0.7.1
+pydantic>=1.10.0
+typing-extensions>=4.8.0
+
+# 파일 형식 지원 (기본)
+lxml>=4.9.3
+pdfminer.six>=20221105
+
+# 이미지 처리
+Pillow>=10.0.0
+
+# 웹 콘텐츠
+feedparser>=6.0.10
+
+# 성능 및 유틸리티
+psutil>=5.9.0
+tqdm>=4.66.0
