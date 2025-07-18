@@ -27,13 +27,9 @@
     "url": "https://github.com/VoidLight00/voidlight-markdown-mcp-server.git"
   },
   "engines": {
-    "node": ">=14.0.0",
-    "python": ">=3.8.0"
+    "node": ">=14.0.0"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "python3": ">=3.8.0"
-  },
   "files": [
     "bin/",
     "src/",
