@@ -1,0 +1,133 @@
+{
+  "_comment": "Claude Desktop 설정 백업 - Voidlight 마크다운 MCP 서버",
+  "_created": "2025-07-18",
+  "_project": "markitdown-mcp-enhanced",
+  
+  "basic_config": {
+    "mcpServers": {
+      "markitdown-mcp-enhanced": {
+        "command": "npx",
+        "args": ["markitdown-mcp-enhanced"],
+        "env": {
+          "KOREAN_SUPPORT": "true",
+          "LOG_LEVEL": "INFO"
+        }
+      }
+    }
+  },
+  
+  "advanced_config_with_api_keys": {
+    "mcpServers": {
+      "markitdown-mcp-enhanced": {
+        "command": "npx",
+        "args": ["markitdown-mcp-enhanced"],
+        "env": {
+          "KOREAN_SUPPORT": "true",
+          "LOG_LEVEL": "INFO",
+          "OPENAI_API_KEY": "your-openai-api-key-here",
+          "AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT": "your-azure-endpoint",
+          "AZURE_DOCUMENT_INTELLIGENCE_KEY": "your-azure-key"
+        }
+      }
+    }
+  },
+  
+  "debug_config": {
+    "mcpServers": {
+      "markitdown-mcp-enhanced": {
+        "command": "npx",
+        "args": ["markitdown-mcp-enhanced"],
+        "env": {
+          "KOREAN_SUPPORT": "true",
+          "LOG_LEVEL": "DEBUG"
+        }
+      }
+    }
+  },
+  
+  "windows_config": {
+    "_note": "Windows에서 직접 스크립트 실행할 경우",
+    "mcpServers": {
+      "markitdown-mcp-enhanced": {
+        "command": "powershell",
+        "args": ["-File", ".\\bin\\markitdown-mcp-enhanced.ps1"],
+        "env": {
+          "KOREAN_SUPPORT": "true",
+          "LOG_LEVEL": "INFO"
+        }
+      }
+    }
+  },
+  
+  "installation_paths": {
+    "macos": "~/Library/Application Support/Claude/claude_desktop_config.json",
+    "windows": "%APPDATA%\\Claude\\claude_desktop_config.json",
+    "linux": "~/.config/Claude/claude_desktop_config.json"
+  },
+  
+  "supported_tools": [
+    {
+      "name": "convert_file",
+      "description": "로컬 파일을 마크다운으로 변환",
+      "example": "C:\\Users\\user\\document.pdf 파일을 마크다운으로 변환해주세요"
+    },
+    {
+      "name": "convert_url", 
+      "description": "URL의 문서를 마크다운으로 변환",
+      "example": "https://example.com/page.html 을 마크다운으로 변환해주세요"
+    },
+    {
+      "name": "analyze_document",
+      "description": "문서 구조와 메타데이터 분석",
+      "example": "이 PDF 파일의 구조를 분석해주세요"
+    },
+    {
+      "name": "get_supported_formats",
+      "description": "지원되는 파일 형식 목록 확인",
+      "example": "지원되는 파일 형식을 알려주세요"
+    },
+    {
+      "name": "convert_batch",
+      "description": "여러 파일을 일괄 변환",
+      "example": "이 폴더의 모든 PDF를 마크다운으로 변환해주세요"
+    }
+  ],
+  
+  "supported_formats": {
+    "documents": [".pdf", ".docx", ".txt", ".md", ".rst"],
+    "images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"],
+    "audio": [".mp3", ".wav", ".flac", ".m4a", ".ogg", ".wma"],
+    "web": [".html", ".htm"]
+  },
+  
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "MCP 서버가 시작되지 않음",
+        "solution": "Node.js와 Python 3.8+ 설치 확인, npx markitdown-mcp-enhanced --version 테스트"
+      },
+      {
+        "issue": "파일 변환 실패",
+        "solution": "LOG_LEVEL을 DEBUG로 설정하여 상세 로그 확인"
+      },
+      {
+        "issue": "한국어 OCR 안됨",
+        "solution": "EasyOCR 설치 확인, KOREAN_SUPPORT=true 설정 확인"
+      }
+    ]
+  },
+  
+  "backup_info": {
+    "created_date": "2025-07-18",
+    "project_version": "1.0.0",
+    "github_repo": "https://github.com/VoidLight00/voidlight-markdown-mcp-server",
+    "status": "private",
+    "documentation": [
+      "README.md",
+      "CLAUDE_DESKTOP_SETUP.md", 
+      "WINDOWS_SETUP.md",
+      "DEVELOPMENT_LOG.md",
+      "CONVERSATION_SUMMARY.md"
+    ]
+  }
+}
