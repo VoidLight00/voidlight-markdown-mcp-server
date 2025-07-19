@@ -11,7 +11,7 @@ const fs = require('fs');
 
 // Check if Python is available
 function findPython() {
-  const pythonCommands = ['python3', 'python'];
+  const pythonCommands = ['python3.11', 'python3', 'python'];
   
   for (const cmd of pythonCommands) {
     try {
