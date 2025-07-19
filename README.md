@@ -1,6 +1,6 @@
 # Voidlight 마크다운 MCP 서버
 
-Microsoft MarkItDown을 벤치마킹하여 제작한 **업그레이드된 MCP 서버**입니다. 한국어 지원을 강화하고 더 많은 파일 형식을 지원합니다.
+한국어 지원을 강화하고 더 많은 파일 형식을 지원합니다.
 
 ## 🚀 빠른 시작 (Claude Desktop)
 
