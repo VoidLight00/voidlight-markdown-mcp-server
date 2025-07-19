@@ -20,9 +20,10 @@ except ImportError:
     _MCP_AVAILABLE = False
 
 __version__ = "1.0.0"
-__author__ = "Voidlight"
+__author__ = "VoidLight"
 __email__ = "voidlight@example.com"
-__description__ = "Enhanced MarkItDown MCP Server with Korean support"
+__license__ = "MIT"
+__description__ = "Enhanced MarkItDown MCP Server with Korean support and advanced document conversion"
 
 __all__ = [
     "MarkItDown",

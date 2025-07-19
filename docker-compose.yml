@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  voidlight-markitdown-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: voidlight/markitdown-mcp:latest
+    container_name: voidlight-markitdown-mcp
+    restart: unless-stopped
+    
+    # Volume mounts for file processing
+    volumes:
+      - ./data:/workdir:rw
+      - ./temp:/app/temp:rw
+    
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MCP_WORKDIR=/workdir
+      - MCP_LOG_LEVEL=INFO
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import voidlight_markitdown_mcp; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Ports (for future HTTP API)
+    ports:
+      - "5000:5000"
+    
+    # Labels for organization
+    labels:
+      - "project=voidlight-markitdown-mcp"
+      - "version=1.0.0"
+      - "description=Enhanced MarkItDown MCP Server with Korean support"
+
+  # Optional: Redis for caching (future feature)
+  redis:
+    image: redis:7-alpine
+    container_name: voidlight-markitdown-redis
+    restart: unless-stopped
+    profiles:
+      - with-cache
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+
+volumes:
+  redis_data:
+    name: voidlight_markitdown_redis_data
+
+networks:
+  default:
+    name: voidlight_markitdown_network

@@ -3,48 +3,60 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "voidlight-markdown-mcp-server"
-description = "Enhanced MarkItDown MCP Server with Korean support"
+name = "voidlight-markitdown-mcp"
 version = "1.0.0"
-authors = [
-    {name = "Voidlight", email = "voidlight@example.com"},
-]
+description = "Enhanced MarkItDown MCP Server with Korean support and advanced document conversion"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = {text = "MIT"}
+authors = [
+    {name = "VoidLight", email = "voidlight@example.com"}
+]
+maintainers = [
+    {name = "VoidLight", email = "voidlight@example.com"}
+]
 requires-python = ">=3.10"
-keywords = ["mcp", "markdown", "document", "converter", "korean"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Text Processing :: Markup",
     "Topic :: Office/Business :: Office Suites",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = [
+    "mcp",
+    "markitdown", 
+    "document-conversion",
+    "korean",
+    "pdf",
+    "docx",
+    "markdown",
+    "claude",
+    "ai-tools"
 ]
 
+# 핵심 의존성만 포함 (필수 기능)
 dependencies = [
     "mcp>=1.0.0",
     "beautifulsoup4>=4.12.0",
     "requests>=2.31.0",
     "markdownify>=0.11.6",
-    "magika>=0.6.1",
     "charset-normalizer>=3.2.0",
     "defusedxml>=0.7.1",
     "pydantic>=2.0.0",
     "typing-extensions>=4.8.0",
-    "python-magic>=0.4.27",
-    "Pillow>=10.0.0",
-    "psutil>=5.9.0",
-    "tqdm>=4.66.0",
-    "cachetools>=5.3.0",
 ]
 
 [project.optional-dependencies]
+# 모든 기능 (전체 설치)
 all = [
+    "magika>=0.6.1",
+    "python-magic>=0.4.27",
     "python-pptx>=0.6.21",
     "mammoth>=1.6.0",
     "lxml>=4.9.3",
@@ -54,27 +66,25 @@ all = [
     "pdfminer.six>=20221105",
     "olefile>=0.46",
     "striprtf>=0.0.21",
+    "Pillow>=10.0.0",
     "exifread>=3.0.0",
     "pydub>=0.25.1",
     "SpeechRecognition>=3.10.0",
     "mutagen>=1.47.0",
     "youtube-transcript-api>=0.6.0",
     "feedparser>=6.0.10",
-    "azure-ai-documentintelligence>=1.0.0",
-    "azure-identity>=1.15.0",
-    "google-cloud-vision>=3.4.0",
-    "openai>=1.0.0",
-    "hanspell>=1.1.0",
+    "psutil>=5.9.0",
+    "tqdm>=4.66.0",
+    "cachetools>=5.3.0",
     "easyocr>=1.7.0",
-    "pyhwp>=0.1.0",
 ]
 
+# 한국어 지원 (플랫폼별 조건부)
 korean = [
-    "hanspell>=1.1.0",
     "easyocr>=1.7.0",
-    "pyhwp>=0.1.0",
 ]
 
+# 클라우드 서비스 (선택사항)
 cloud = [
     "azure-ai-documentintelligence>=1.0.0",
     "azure-identity>=1.15.0",
@@ -82,86 +92,116 @@ cloud = [
     "openai>=1.0.0",
 ]
 
-dev = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-mock>=3.11.0",
-    "black>=23.7.0",
-    "isort>=5.12.0",
-    "pylint>=2.17.0",
-    "mypy>=1.5.0",
-    "flake8>=6.0.0",
-    "pre-commit>=3.4.0",
-    "mkdocs>=1.5.0",
-    "mkdocs-material>=9.0.0",
+# 파일 형식 지원 확장
+office = [
+    "python-pptx>=0.6.21",
+    "mammoth>=1.6.0", 
+    "openpyxl>=3.1.0",
+    "xlrd>=2.0.0",
+    "striprtf>=0.0.21",
 ]
 
-[project.urls]
-Homepage = "https://github.com/voidlight/voidlight-markdown-mcp-server"
-Documentation = "https://github.com/voidlight/voidlight-markdown-mcp-server/blob/main/README.md"
-Repository = "https://github.com/voidlight/voidlight-markdown-mcp-server"
-Issues = "https://github.com/voidlight/voidlight-markdown-mcp-server/issues"
+# PDF 처리 고급 기능
+pdf = [
+    "pdfminer.six>=20221105",
+    "Pillow>=10.0.0",
+]
+
+# 이미지 처리
+image = [
+    "Pillow>=10.0.0",
+    "exifread>=3.0.0",
+    "easyocr>=1.7.0",
+]
+
+# 오디오 처리
+audio = [
+    "pydub>=0.25.1",
+    "SpeechRecognition>=3.10.0",
+    "mutagen>=1.47.0",
+]
+
+# 웹 콘텐츠
+web = [
+    "youtube-transcript-api>=0.6.0",
+    "feedparser>=6.0.10",
+]
+
+# 개발 도구
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
 
 [project.scripts]
-voidlight-markdown-mcp = "markitdown_mcp_enhanced.server:main"
+voidlight-markitdown-mcp = "voidlight_markitdown_mcp.cli:main"
 
-[project.entry-points."markitdown.plugin"]
-rtf = "markitdown_mcp_enhanced.plugins.sample_plugin:RtfConverter"
-advanced_text = "markitdown_mcp_enhanced.plugins.advanced_plugin:AdvancedTextConverter"
+[project.urls]
+Homepage = "https://github.com/VoidLight00/voidlight-markdown-mcp-server"
+Repository = "https://github.com/VoidLight00/voidlight-markdown-mcp-server.git"
+Documentation = "https://github.com/VoidLight00/voidlight-markdown-mcp-server#readme"
+Changelog = "https://github.com/VoidLight00/voidlight-markdown-mcp-server/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/VoidLight00/voidlight-markdown-mcp-server/issues"
+
+[tool.hatch.version]
+path = "src/voidlight_markitdown_mcp/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/markitdown_mcp_enhanced"]
+packages = ["src/voidlight_markitdown_mcp"]
 
 [tool.hatch.build.targets.sdist]
-exclude = [
-    "/.github",
-    "/docs",
-    "/tests",
-    "/.env*",
-    "/.vscode",
-    "/.idea",
+include = [
+    "/src",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml",
 ]
 
 [tool.black]
 line-length = 88
-target-version = ['py310']
-include = '\.pyi?$'
-exclude = '''
+target-version = ["py310"]
+include = "\\.pyi?$"
+extend-exclude = """
 /(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
+  # directories
+  \\.eggs
+  | \\.git
+  | \\.hg
+  | \\.mypy_cache
+  | \\.tox
+  | \\.venv
   | build
   | dist
 )/
-'''
+"""
 
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
 line_length = 88
-known_first_party = ["markitdown_mcp_enhanced"]
 
-[tool.pylint.messages_control]
-disable = [
-    "missing-docstring",
-    "invalid-name",
-    "too-few-public-methods",
-    "too-many-arguments",
-    "too-many-locals",
-    "too-many-branches",
-    "too-many-statements",
-    "duplicate-code",
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "--cov=voidlight_markitdown_mcp",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--strict-markers",
+    "--strict-config",
 ]
-
-[tool.pylint.format]
-max-line-length = 88
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
 
 [tool.mypy]
 python_version = "3.10"
@@ -180,65 +220,11 @@ strict_equality = true
 
 [[tool.mypy.overrides]]
 module = [
-    "magic.*",
-    "pyhwp.*",
-    "striprtf.*",
-    "hanspell.*",
-    "easyocr.*",
-    "mutagen.*",
-    "youtube_transcript_api.*",
-    "feedparser.*",
-    "exifread.*",
-    "pydub.*",
-    "speech_recognition.*",
-    "mammoth.*",
     "markdownify.*",
-    "olefile.*",
     "pdfminer.*",
+    "mammoth.*",
+    "easyocr.*",
     "azure.*",
     "google.*",
 ]
 ignore_missing_imports = true
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = [
-    "-v",
-    "--tb=short",
-    "--cov=src/markitdown_mcp_enhanced",
-    "--cov-report=html",
-    "--cov-report=term-missing",
-    "--cov-fail-under=80",
-]
-filterwarnings = [
-    "ignore::DeprecationWarning",
-    "ignore::PendingDeprecationWarning",
-]
-
-[tool.coverage.run]
-source = ["src"]
-omit = [
-    "*/tests/*",
-    "*/test_*",
-    "*/__pycache__/*",
-    "*/migrations/*",
-    "*/venv/*",
-    "*/env/*",
-]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\bProtocol\):",
-    "@(abc\.)?abstractmethod",
-]
